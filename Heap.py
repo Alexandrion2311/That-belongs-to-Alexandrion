@@ -51,7 +51,7 @@ class Heap(object):
 
 
 
-class TestStack(unittest.TestCase):
+class TestHEAP(unittest.TestCase):
     
     
     def test_HEAP00(self):
