@@ -1,11 +1,17 @@
 import unittest
 
 class Heap(object):
+
+
     def __init__(self):
         self.x=[0]*10
         self.n=0
+
+
     def size(self):
         return self.n
+    
+    
     def sift_up(self,a):
         self.x[self.n] = a
         self.n += 1
@@ -17,8 +23,11 @@ class Heap(object):
                 self.x[(c - 1) // 2]=t
                 c=(c-1)//2
 
+    
     def top(self):
         return self.x[0]
+    
+    
     def sift_down(self):
         if self.n==0:
             return None
@@ -49,6 +58,8 @@ class Heap(object):
 
 
 class TestStack(unittest.TestCase):
+    
+    
     def test_HEAP00(self):
         k=Heap()
         self.assertEqual(k.size(),0)
