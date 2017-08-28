@@ -1,31 +1,26 @@
 import unittest
 
+
 class Heap(object):
-
-
     def __init__(self, v):
         self.x = [0]*v
         self.n = 0
 
-
     def size(self):
         return self.n
-    
-    
+
     def sift_up(self, a):
         self.x[self.n] = a
         self.n += 1
-        c= self.n - 1
+        c = self.n - 1
         if c != 0:
             while self.x[c] > self.x[(c-1) // 2]:
                 self.x[c], self.x[(c-1) // 2] = self.x[(c-1) // 2], self.x[c]
                 c = (c-1) // 2
 
-    
     def top(self):
         return self.x[0]
-    
-    
+
     def extract(self):
         if self.n == 0:
             return None
@@ -49,13 +44,10 @@ class Heap(object):
                     c2 = p * 2 + 2
 
 
-
-
 class TestHEAP(unittest.TestCase):
-    
-    
+
     def test_HEAP00(self):
-        k=Heap(10)
+        k = Heap(10)
         self.assertEqual(k.size(), 0)
         k.sift_up(100)
         k.sift_up(30)
@@ -71,7 +63,6 @@ class TestHEAP(unittest.TestCase):
         k.extract()
         k.extract()
         self.assertEqual(k.top(), 0)
-
 
 if __name__ == '__main__':
     unittest.main()
