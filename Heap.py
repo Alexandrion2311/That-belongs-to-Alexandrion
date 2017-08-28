@@ -3,8 +3,8 @@ import unittest
 class Heap(object):
 
 
-    def __init__(self):
-        self.x=[0]*10
+    def __init__(self,v):
+        self.x=[0]*v
         self.n=0
 
 
@@ -18,9 +18,7 @@ class Heap(object):
         c=self.n-1
         if c!=0:
             while c!= 0 and self.x[c]>self.x[(c-1)//2]:
-                t=self.x[c]
-                self.x[c]=self.x[(c-1)//2]
-                self.x[(c - 1) // 2]=t
+                self.x[c],self.x[(c-1)//2]=self.x[(c-1)//2],self.x[c]
                 c=(c-1)//2
 
     
@@ -28,7 +26,7 @@ class Heap(object):
         return self.x[0]
     
     
-    def sift_down(self):
+    def extract(self):
         if self.n==0:
             return None
         else:
@@ -40,16 +38,12 @@ class Heap(object):
             c2=2
             while self.x[p]<self.x[c1] or self.x[p]<self.x[c2]:
                 if self.x[c1]>= self.x[c2]:
-                    t=self.x[p]
-                    self.x[p] = self.x[c1]
-                    self.x[c1] = t
+                    self.x[p],self.x[c1]=self.x[c1],self.x[p]
                     p=c1
                     c1=p*2+1
                     c2=p*2+2
                 else:
-                    t = self.x[p]
-                    self.x[p] = self.x[c2]
-                    self.x[c2] = t
+                    self.x[p], self.x[c2]=self.x[c2],self.x[p]
                     p = c2
                     c1 = p * 2 + 1
                     c2 = p * 2 + 2
@@ -61,7 +55,7 @@ class TestStack(unittest.TestCase):
     
     
     def test_HEAP00(self):
-        k=Heap()
+        k=Heap(10)
         self.assertEqual(k.size(),0)
         k.sift_up(100)
         k.sift_up(30)
@@ -70,12 +64,12 @@ class TestStack(unittest.TestCase):
         k.sift_up(200)
         self.assertEqual(k.size(),5)
         self.assertEqual(k.top(),1300)
-        k.sift_down()
+        k.extract()
         self.assertEqual(k.top(), 200)
-        k.sift_down()
-        k.sift_down()
-        k.sift_down()
-        k.sift_down()
+        k.extract()
+        k.extract()
+        k.extract()
+        k.extract()
         self.assertEqual(k.top(), 0)
 
 
