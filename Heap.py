@@ -62,6 +62,14 @@ class TestHEAP(unittest.TestCase):
         k.extract()
         k.extract()
         self.assertEqual(k.top(), 0)
+        
+    def test_heap_01(self):
+        heap = Heap(2)
+        heap.sift_up(1)
+        heap.sift_up(2)
+        self.assertEqual(heap.top(), 2)
+        heap.extract()
+        self.assertEqual(heap.top(), 1)
 
 if __name__ == '__main__':
     unittest.main()
