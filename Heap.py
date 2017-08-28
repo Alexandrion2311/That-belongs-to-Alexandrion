@@ -13,10 +13,10 @@ class Heap(object):
         self.x[self.n] = a
         self.n += 1
         c = self.n - 1
-        if c != 0:
-            while self.x[c] > self.x[(c-1) // 2]:
-                self.x[c], self.x[(c-1) // 2] = self.x[(c-1) // 2], self.x[c]
-                c = (c-1) // 2
+        c != 0:
+        while c != 0 and self.x[c] > self.x[(c-1) // 2]:
+            self.x[c], self.x[(c-1) // 2] = self.x[(c-1) // 2], self.x[c]
+            c = (c-1) // 2
 
     def top(self):
         return self.x[0]
